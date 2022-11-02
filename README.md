@@ -1,1 +1,2 @@
-# WebDev-GraphQL-Countries
+# Simple GraphQL API query fetch application
+
