@@ -1,14 +1,14 @@
 const continentSelect = document.getElementById(`continent-select`);
 const countryList = document.getElementById(`countries-list`)
 
-continentSelect.addEventListener(`change`, async e => {
-    const continentCode = e.target.value;
-    const countries = await getContinentCountries(continentCode);
-    countryList.innerHTML = ``;
+continentSelect.addEventListener('change', async e => {
+    const continentCode = e.target.value
+    const countries = await getContinentCountries(continentCode)
+    countryList.innerHTML = ''
     countries.forEach(country => {
-        const element = document.createElement(`div`);
-        element.innerText = country.name;
-        countryList.append(element);
+        const element = document.createElement('div')
+        element.innerText = country.name
+        countryList.append(element)
     })
 })
 
@@ -47,7 +47,7 @@ function queryFetch(query, variables) {
 }
 
 
-function getContinentCountries(countriesCode) {
+function getContinentCountries(continentCode) {
     return queryFetch(`
     query getCountries($code: ID!) {
       continent(code: $code) {
@@ -55,7 +55,7 @@ function getContinentCountries(countriesCode) {
           name
         }
       }
-}`, {code: countriesCode}).then(data => {
-        console.log(data.data)
+}`, { code: continentCode }).then(data => {
+        return data.data.continent.countries
     })
 }
